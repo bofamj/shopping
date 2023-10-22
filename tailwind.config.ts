@@ -12,17 +12,17 @@ const config: Config = {
     themes: [
       {
         lightTheme: {
-          primary: "#f4aa3a",
-          secondary: "#f4f4a1",
-          accent: "#1be885",
-          neutral: "#272136",
-          "base-100": "#ffffff",
-          info: "#778ad4",
-          success: "#23b893",
-          warning: "#f79926",
-          error: "#ea535a",
+          primary: "#82a2dd",
+          secondary: "#e514d0",
+          accent: "#127eea",
+          neutral: "#16191d",
+          "base-100": "#e7ecf3",
+          info: "#87c6e3",
+          success: "#0f8a48",
+          warning: "#a47a0e",
+          error: "#df3064",
           body: {
-            "background-color": "#e3e6e6",
+            "background-color": "#e7ecf3",
           },
         },
       },
