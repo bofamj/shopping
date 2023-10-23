@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import logo from './assest/logo.jpg'
 
 
 export default function Home() {
@@ -18,10 +19,10 @@ export default function Home() {
           >
             By{' '}
             <Image
-              src="/vercel.svg"
+              src={logo}
               alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
+              className="dark:invert rounded-md"
+              width={50}
               height={24}
               priority
             />
