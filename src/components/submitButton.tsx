@@ -15,7 +15,7 @@ className? : string;
 }&ComponentProps<"button">
 
 export default function SubmitButton(
-  {children,className}:SubmitButtonProbs
+  {children,className,...props}:SubmitButtonProbs
 ) {
   const { pending} = experimental_useFormStatus();
  
@@ -23,7 +23,7 @@ export default function SubmitButton(
   
  
   return (
-    <button disabled={pending} type="submit" className={`btn btn-primary ${className}`}>
+    <button {...props} disabled={pending} type="submit" className={`btn btn-primary ${className}`}>
       {pending && <span className="loading loading-dots loading-md"/>}
       {children}</button>
     
