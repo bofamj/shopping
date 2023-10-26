@@ -3,11 +3,14 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-      images: {
-        remotePatterns:[{
-            hostname:"images.unsplash.com"
-        }]
-      }
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'images.unsplash.com',
+      },
+      { hostname: 'i.dummyjson.com' },
+    ],
+  },
 }
 
 module.exports = nextConfig
