@@ -33,7 +33,7 @@ export default function ProductCard({ product }: productCardProps) {
           {isNew && <div className="badge badge-info">NEW</div>}
         </h2>
         <p>{product.discription}</p>
-        <span className="badge">{formatPrice(product.price)}</span>
+        <span className="badge">{product.price}$</span>
       </div>
     </Link>
   )
