@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { cache } from 'react'
 
 import ImageGalleryComp from '@/components/ImageGalleryComp'
+import AddtoCartButton from './AddtoCartButton'
 
 interface productsProps {
   params: {
@@ -41,7 +42,7 @@ export default async function singelProduactPage({
 
   return (
     <>
-      <div className="">
+      <div className="rounded-sm py-4 shadow-lg">
         <ImageGalleryComp images={...product.images} />
         <div className="flex flex-col items-center">
           <h1 className="text-5xl font-bold">{product?.name}</h1>
@@ -49,6 +50,7 @@ export default async function singelProduactPage({
             {product?.price}$
           </span>
           <p className="py-6">{product?.discription}</p>
+          <AddtoCartButton productId={product.id} />
         </div>
       </div>
     </>

@@ -13,13 +13,13 @@ export default function ImageGalleryComp(images: any) {
 }
 const CarouselItem = ({ item }: any) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ">
       <Image
         src={item}
         alt={item.caption}
         width={500}
         height={400}
-        className="rounded-md"
+        className="rounded-md shadow-lg"
       />
       <p>{item.caption}</p>
     </div>
