@@ -1,13 +1,31 @@
 'use client'
 
+import { useTransition, useState } from 'react'
+
 interface addToCartProps {
   productId: string
+  addToCart: (productId: string) => Promise<void>
 }
 
-export default function AddtoCartButton({ productId }: addToCartProps) {
+export default function AddtoCartButton({
+  productId,
+  addToCart,
+}: addToCartProps) {
+  const [isPindng, startTransition] = useTransition()
+  const [isSuccess, setIsSuccess] = useState(false)
+
   return (
     <div className="flex items-center gap-3">
-      <button className="btn btn-accent text-white">
+      <button
+        className="btn btn-accent text-white"
+        onClick={() => {
+          setIsSuccess(false)
+          startTransition(async () => {
+            await addToCart(productId)
+            setIsSuccess(true)
+          })
+        }}
+      >
         Add to Cart
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +41,11 @@ export default function AddtoCartButton({ productId }: addToCartProps) {
             fill="white"
           ></path>{' '}
         </svg>
+        {isPindng && <span className="loading loading-dots loading-md" />}
       </button>
+      {!isPindng && isSuccess && (
+        <span className="text-success">added to the cart</span>
+      )}
     </div>
   )
 }

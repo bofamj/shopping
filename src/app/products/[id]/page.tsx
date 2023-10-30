@@ -1,5 +1,6 @@
 import prisma from '@/lib/db/prisma'
 import Link from 'next/link'
+import { addToCart } from './actions'
 
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -50,7 +51,7 @@ export default async function singelProduactPage({
             {product?.price}$
           </span>
           <p className="py-6">{product?.discription}</p>
-          <AddtoCartButton productId={product.id} />
+          <AddtoCartButton productId={product.id} addToCart={addToCart} />
         </div>
       </div>
     </>
