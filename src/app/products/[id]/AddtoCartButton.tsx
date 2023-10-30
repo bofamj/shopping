@@ -7,7 +7,7 @@ interface addToCartProps {
 export default function AddtoCartButton({ productId }: addToCartProps) {
   return (
     <div className="flex items-center gap-3">
-      <button className="btn btn-info text-white">
+      <button className="btn btn-accent text-white">
         Add to Cart
         <svg
           xmlns="http://www.w3.org/2000/svg"

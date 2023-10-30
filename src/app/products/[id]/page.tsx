@@ -46,7 +46,7 @@ export default async function singelProduactPage({
         <ImageGalleryComp images={...product.images} />
         <div className="flex flex-col items-center">
           <h1 className="text-5xl font-bold">{product?.name}</h1>
-          <span className="badge mt-3 border-none bg-info px-3 text-white">
+          <span className="badge mt-3 border-none bg-accent px-3 text-white">
             {product?.price}$
           </span>
           <p className="py-6">{product?.discription}</p>
