@@ -1,6 +1,8 @@
 'use client'
 
 import { useTransition, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 interface addToCartProps {
   productId: string
@@ -23,6 +25,16 @@ export default function AddtoCartButton({
           startTransition(async () => {
             await addToCart(productId)
             setIsSuccess(true)
+            toast.success('successfuly add product to cart', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light',
+            })
           })
         }}
       >
@@ -43,9 +55,7 @@ export default function AddtoCartButton({
         </svg>
         {isPindng && <span className="loading loading-dots loading-md" />}
       </button>
-      {!isPindng && isSuccess && (
-        <span className="text-success">added to the cart</span>
-      )}
+      {!isPindng && isSuccess && <ToastContainer />}
     </div>
   )
 }
