@@ -20,6 +20,7 @@ export default function AddtoCartButton({
     <div className="flex items-center gap-3">
       <button
         className="btn btn-accent text-white"
+        disabled={isPindng}
         onClick={() => {
           setIsSuccess(false)
           startTransition(async () => {
