@@ -9,15 +9,15 @@ export default async function NavBar() {
 
   return (
     <div>
-      <div className="navbar m-auto max-w-7xl flex-col gap-2 bg-base-100 px-20 shadow-lg sm:flex-row">
-        <div className="flex-1">
-          <Link href="/" className="flex gap-1 text-xl">
+      <div className="navbar fixed top-0 z-50 m-auto max-w-7xl flex-col gap-2 bg-base-100 px-20 shadow-lg sm:flex-row">
+        <div className="flex-1 ">
+          <Link href="/" className="flex gap-1 text-xl ">
             <Image
               src={logo}
               alt="shepshop logo"
               width={40}
               height={40}
-              className="rounded-full"
+              className="h-[40px] w-[40px] rounded-full"
             />
             ShepShop
           </Link>

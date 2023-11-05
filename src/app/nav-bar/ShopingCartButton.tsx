@@ -47,7 +47,7 @@ export default function ShopingCartButton({ cart }: shopingCartBtnProps) {
           <span className="text-info">Subtotal: ${cart?.subtotal || 0}</span>
           <div className="card-actions">
             <Link
-              href="/"
+              href="/cart"
               className="btn btn-primary btn-block"
               onClick={closDeopDown}
             >
