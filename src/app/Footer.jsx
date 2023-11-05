@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="footer gap-2 bg-blue-950 px-20  text-neutral-content ">
-      <aside className="ml-10">
+    <footer className="footer gap-2 bg-blue-950 px-44  text-neutral-content ">
+      <aside className="mx-10 ml-10">
         <svg
           width="50"
           height="50"
