@@ -60,6 +60,9 @@ export default function CartItem({
           <div className="flex items-center gap-3">
             Totl: ${quantity * product.price}
           </div>
+          {isPindng && (
+            <span className="loading loading-spinner loading-md"></span>
+          )}
         </div>
       </div>
 
