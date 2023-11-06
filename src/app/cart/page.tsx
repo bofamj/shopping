@@ -35,7 +35,7 @@ export default async function cartPage() {
       <div className="mt-10 flex flex-col items-end gap-2 md:items-center">
         <h1 className="font-bold">Cart Total : ${cart?.subtotal}</h1>
         <button className="btn btn-error hover:drop-shadow-lg sm:w-[200px]">
-          chek out
+          CHECKOUT
         </button>
       </div>
     </div>
