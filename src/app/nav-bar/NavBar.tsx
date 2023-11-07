@@ -3,8 +3,12 @@ import Link from 'next/link'
 import logo from '@/app/assest/logo.jpg'
 import ShopingCartButton from './ShopingCartButton'
 import { findCart } from '@/lib/cart'
+import UserInfoButton from './UserInfoButton'
+import { authOptions } from '../api/auth/[...nextauth]/route'
+import { getServerSession } from 'next-auth'
 
 export default async function NavBar() {
+  const session = await getServerSession(authOptions)
   const cart = await findCart()
 
   return (
@@ -34,30 +38,8 @@ export default async function NavBar() {
             </div>
           </form>
           <ShopingCartButton cart={cart} />
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
-              <div className="w-10 rounded-full">
-                <Image width={20} height={20} src="" alt="avatar" />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+
+          <UserInfoButton session={session} />
         </div>
       </div>
     </div>
