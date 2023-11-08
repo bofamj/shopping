@@ -1,6 +1,6 @@
 import prisma from './db/prisma'
 import { cookies } from 'next/dist/client/components/headers'
-import { Cart, Prisma } from '@prisma/client'
+import { Cart, Prisma, CartItime } from '@prisma/client'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
@@ -73,4 +73,80 @@ export async function findCart(): Promise<ShoppingCart | null> {
       0,
     ),
   }
+}
+
+//*MERGING THE ANONYMOUS CART ANT THE UOSER CART
+export async function mergeCrt(userId: string) {
+  const localID = cookies().get('localCartId')?.value
+
+  //*find the anonymous cart if any
+  const anonymousCart = localID
+    ? await prisma.cart.findUnique({
+        where: { id: localID },
+        include: { items: true },
+      })
+    : null
+
+  if (!anonymousCart) return
+
+  //*find the user cart
+
+  const userCart = await prisma.cart.findFirst({
+    where: { userId },
+    include: { items: true },
+  })
+  await prisma.$transaction(async (tx) => {
+    if (userCart) {
+      const mergedCartItems = mergeCartItems(
+        userCart.items,
+        anonymousCart.items,
+      )
+
+      ///*delet the existing cart items
+      await tx.cartItime.deleteMany({
+        where: { cartId: userCart.id },
+      })
+
+      await tx.cartItime.createMany({
+        data: mergedCartItems.map((item) => ({
+          cartId: userCart.id,
+          productId: item.productId,
+          quantity: item.quantity,
+        })),
+      })
+    } else {
+      //* if there are no user cart created yet, create a new one
+      await tx.cart.create({
+        data: {
+          userId,
+          items: {
+            createMany: {
+              data: anonymousCart.items.map((item) => ({
+                productId: item.productId,
+                quantity: item.quantity,
+              })),
+            },
+          },
+        },
+      })
+    }
+    await tx.cart.delete({
+      where: { id: anonymousCart.id },
+    })
+    cookies().set('localCartId', '')
+  })
+}
+
+function mergeCartItems(...cartItems: CartItime[][]): CartItime[] {
+  return cartItems.reduce((acc, items) => {
+    items.forEach((item) => {
+      const existingItem = acc.find((i) => i.productId === item.productId)
+      if (existingItem) {
+        existingItem.quantity += item.quantity
+      } else {
+        acc.push(item)
+      }
+    })
+    return acc
+  }, [] as CartItime[])
 }
