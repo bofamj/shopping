@@ -30,8 +30,8 @@ export default function PaginationBar({
 
   return (
     <>
-      <div className="join hidden pb-5  sm:block">{paginationPagesNumber}</div>
-      <div className="join block sm:hidden">
+      {/* <div className="join hidden pb-5  sm:block">{paginationPagesNumber}</div> */}
+      <div className="join block ">
         {currentPage > 1 && (
           <Link
             href={'?page=' + (currentPage - 1)}
