@@ -2,6 +2,7 @@ import { findCart } from '@/lib/cart'
 import CartItem from './CartItem'
 import { changeCartProductQuantity } from './actions'
 import Link from 'next/link'
+import delay from 'delay'
 
 export const metadata = {
   title: 'Shopping Cart Shep-Shope',
@@ -9,6 +10,8 @@ export const metadata = {
 
 export default async function cartPage() {
   const cart = await findCart()
+  await delay(5000)
+
   return (
     <div className="mb-10 text-center">
       <h1 className="mb-10 text-3xl font-bold">Your Shopping Cart</h1>

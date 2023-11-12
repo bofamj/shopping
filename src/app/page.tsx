@@ -3,6 +3,7 @@ import prisma from '../lib/db/prisma'
 import Image from 'next/image'
 import Link from 'next/link'
 import PaginationBar from '@/components/PaginationBar'
+import delay from 'delay'
 
 interface Props {
   searchParams: { page: string }
@@ -20,6 +21,7 @@ export default async function Home({ searchParams: { page = '1' } }: Props) {
     skip: (pageNumper - 1) * pageSize + (pageNumper === 1 ? 0 : heroItem),
     take: pageSize + (pageNumper === 1 ? heroItem : 0),
   })
+  await delay(3000)
   return (
     <div className=" flex flex-col items-center pb-5 text-white">
       {pageNumper === 1 && (
