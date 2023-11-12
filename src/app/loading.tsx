@@ -2,7 +2,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function Loading() {
-  const product = [1, 2, 3, 4, 5, 6]
+  const product: number[] = [1, 2, 3, 4, 5, 6]
   return (
     <>
       <SkeletonTheme baseColor="#F5F5F5" highlightColor="#ffffff">

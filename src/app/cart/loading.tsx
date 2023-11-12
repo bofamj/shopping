@@ -1,22 +1,32 @@
-import React from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function Loading() {
-  const shimmer =
-    'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent'
+  const carts = [1, 2, 3, 4, 5]
   return (
-    <div className=" flex flex-col items-center pb-5 text-white">
-      <div
-        className={`${shimmer} relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
-      >
-        <div className="flex p-4">
-          <div className="h-5 w-5 rounded-md bg-gray-200" />
-          <div className="ml-2 h-6 w-16 rounded-md bg-gray-200 text-sm font-medium" />
-        </div>
-        <div className="flex items-center justify-center truncate rounded-xl bg-white px-4 py-8">
-          <div className="h-7 w-20 rounded-md bg-gray-200" />
-        </div>
-      </div>
-    </div>
+    <>
+      {carts.map((cart) => (
+        <SkeletonTheme baseColor="#F5F5F5" highlightColor="#ffffff" key={cart}>
+          <div className="hero rounded-xl  ">
+            <section className="flex w-full flex-col gap-3 border-4">
+              <article className=" flex w-full gap-3">
+                <div className="item-img">
+                  <Skeleton width={140} height={140} />
+                </div>
+                <div className="w-full">
+                  {' '}
+                  <h3 className="item-title">
+                    <Skeleton count={4} />
+                  </h3>
+                  <div className="item-info">
+                    <Skeleton width={160} height={20} />
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </SkeletonTheme>
+      ))}
+    </>
   )
 }

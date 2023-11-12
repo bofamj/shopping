@@ -10,7 +10,6 @@ export const metadata = {
 
 export default async function cartPage() {
   const cart = await findCart()
-  await delay(5000)
 
   return (
     <div className="mb-10 text-center">
