@@ -13,5 +13,24 @@ const nextConfig = {
     ],
   },
 }
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/about',
+        headers: [
+          {
+            key: 'origin',
+            value: 'origin',
+          },
+          {
+            key: 'x-another-custom-header',
+            value: 'my other custom header value',
+          },
+        ],
+      },
+    ]
+  },
+}
 
 module.exports = nextConfig

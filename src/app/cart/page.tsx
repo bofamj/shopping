@@ -2,7 +2,8 @@ import { findCart } from '@/lib/cart'
 import CartItem from './CartItem'
 import { changeCartProductQuantity } from './actions'
 import Link from 'next/link'
-import delay from 'delay'
+import Button from './Button'
+import Cart from '@prisma/client'
 
 export const metadata = {
   title: 'Shopping Cart Shep-Shope',
@@ -36,9 +37,7 @@ export default async function cartPage() {
       )}
       <div className="mt-10 flex flex-col items-end gap-2 md:items-center">
         <h1 className="font-bold">Cart Total : ${cart?.subtotal}</h1>
-        <button className="btn btn-error hover:drop-shadow-lg sm:w-[200px]">
-          CHECKOUT
-        </button>
+        <Button cart={cart} />
       </div>
     </div>
   )

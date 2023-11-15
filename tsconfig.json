@@ -27,9 +27,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/api/creatProducts.js"
+    "src/app/api/creatProducts.js",
+    "src/app/api/create-payment-intent/route.js"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "typings/browser.d.ts", "typings/browser"],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"
