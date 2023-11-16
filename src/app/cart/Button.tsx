@@ -4,12 +4,18 @@ import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 
 export default function Button(cart: any) {
+  const cartItems: any[] = []
+
+  const cartItem = cart?.cart.items.map((item: any) => {
+    return item
+  })
+  cartItems.push(cartItem)
+
   const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
   )
   const createCheckoutSession = async () => {
-    console.log('🚀 ~ file: Button.tsx:7 ~ Button ~ cart:', cart.cart.items)
-
+    const stripe = await stripePromise
     const res = await fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: {
@@ -17,11 +23,13 @@ export default function Button(cart: any) {
       },
 
       body: JSON.stringify({
-        items: cart.cart.items,
+        items: cartItems,
+        itemsData: cart.cart,
       }),
     })
+    const data = await res.json()
 
-    console.log(res)
+    stripe?.redirectToCheckout({ sessionId: data.id })
   }
 
   return (
