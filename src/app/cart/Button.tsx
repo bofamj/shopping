@@ -1,12 +1,12 @@
 'use client'
 
+import { cartItems } from '@/lib/cart'
 import { loadStripe } from '@stripe/stripe-js'
-import axios from 'axios'
 
 export default function Button(cart: any) {
-  const cartItems: any[] = []
+  const cartItems: cartItems[] = []
 
-  const cartItem = cart?.cart.items.map((item: any) => {
+  const cartItem = cart?.cart.items.map((item: cartItems) => {
     return item
   })
   cartItems.push(cartItem)
