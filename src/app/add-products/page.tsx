@@ -26,6 +26,12 @@ async function addProduct(formData: FormData) {
       discription,
       imageUrl,
       price,
+      discount: 10,
+      rating: 4.5,
+      stock: 12,
+      brand: 'non',
+      category: 'all',
+      images: [],
     },
   })
 
