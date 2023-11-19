@@ -107,13 +107,27 @@ export async function mergeCrt(userId: string) {
         where: { cartId: userCart.id },
       })
 
-      await tx.cartItime.createMany({
+      await tx.cart.update({
+        where: { id: userCart.id },
+        data: {
+          items: {
+            createMany: {
+              data: mergedCartItems.map((item) => ({
+                productId: item.productId,
+                quantity: item.quantity,
+              })),
+            },
+          },
+        },
+      })
+
+      /* await tx.cartItime.createMany({
         data: mergedCartItems.map((item) => ({
           cartId: userCart.id,
           productId: item.productId,
           quantity: item.quantity,
         })),
-      })
+      }) */
     } else {
       //* if there are no user cart created yet, create a new one
       await tx.cart.create({

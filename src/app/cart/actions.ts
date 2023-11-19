@@ -13,24 +13,53 @@ export async function changeCartProductQuantity(
 
   if (quantity === 0) {
     if (productInCart) {
-      await prisma.cartItime.delete({
-        where: { id: productInCart.id },
+      await prisma.cart.update({
+        where: { id: cart.id },
+        data: {
+          items: { delete: { id: productInCart.id } },
+        },
       })
+      /*  await prisma.cartItime.delete({
+        where: { id: productInCart.id },
+      }) */
     }
   } else {
     if (productInCart) {
-      await prisma.cartItime.update({
+      await prisma.cart.update({
+        where: { id: cart.id },
+        data: {
+          items: {
+            update: {
+              where: { id: productInCart.id },
+              data: { quantity },
+            },
+          },
+        },
+      })
+      /*  await prisma.cartItime.update({
         where: { id: productInCart.id },
         data: { quantity },
-      })
+      }) */
     } else {
-      await prisma.cartItime.create({
+      await prisma.cart.update({
+        where: { id: cart.id },
+        data: {
+          items: {
+            create: {
+              productId,
+              quantity,
+            },
+          },
+        },
+      })
+
+      /*  await prisma.cartItime.create({
         data: {
           cartId: cart.id,
           productId,
           quantity,
         },
-      })
+      }) */
     }
   }
   revalidatePath('/cart')
