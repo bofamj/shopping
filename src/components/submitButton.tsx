@@ -1,31 +1,31 @@
-"use client";
+'use client'
 
+import { ComponentProps } from 'react'
+import { experimental_useFormState } from 'react-dom'
 
-
-import { ComponentProps } from "react"
-import { experimental_useFormState,
-  experimental_useFormStatus,} from "react-dom";
-
-
+/* experimental_useFormState */
 
 type SubmitButtonProbs = {
-children : React.ReactNode;
-className? : string;
+  children: React.ReactNode
+  className?: string
+} & ComponentProps<'button'>
 
-}&ComponentProps<"button">
+export default function SubmitButton({
+  children,
+  className,
+  ...props
+}: SubmitButtonProbs) {
+  const { pending } = experimental_useFormState()
 
-export default function SubmitButton(
-  {children,className,...props}:SubmitButtonProbs
-) {
-  const { pending} = experimental_useFormStatus();
- 
-  
-  
- 
   return (
-    <button {...props} disabled={pending} type="submit" className={`btn btn-primary ${className}`}>
-      {pending && <span className="loading loading-dots loading-md"/>}
-      {children}</button>
-    
+    <button
+      {...props}
+      disabled={pending}
+      type="submit"
+      className={`btn btn-primary ${className}`}
+    >
+      {pending && <span className="loading loading-dots loading-md" />}
+      {children}
+    </button>
   )
 }
