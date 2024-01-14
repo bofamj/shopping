@@ -10,6 +10,7 @@ const nextConfig = {
       },
       { hostname: 'i.dummyjson.com' },
       { hostname: 'lh3.googleusercontent.com' },
+      { hostname: 'cdn.dummyjson.com' },
     ],
   },
 }
